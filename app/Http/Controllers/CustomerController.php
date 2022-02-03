@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Customer;
+use App\Models\Menu;
 use Illuminate\Http\Request;
 
 class CustomerController extends Controller
@@ -17,8 +18,11 @@ class CustomerController extends Controller
     {
         //get active customers
         $customers = Customer::where('is_active', 1)->get();
+        $menus = Menu::all();
+
         return view('dashboard.customer', [
-            'customers' => $customers
+            'customers' => $customers,
+            'menus' => $menus
         ]);
     }
 

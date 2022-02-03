@@ -55,6 +55,7 @@
                 <th scope="col">ID</th>
                 <th scope="col">Name</th>
                 <th scope="col">Table Number</th>
+                <th scope="col">Action</th>
             </tr>
             </thead>
             <tbody>
@@ -64,6 +65,86 @@
                         <th scope="row">{{$customer->id}}</th>
                         <td>{{$customer->name}}</td>
                         <td>{{$customer->table_no}}</td>
+                        <td>
+                            <!-- Button trigger modal -->
+                            <button type="button" class="btn btn-sm btn-outline-primary" data-bs-toggle="modal"
+                                    data-bs-target="#newOrder{{$customer->id}}">
+                                Place Order
+                            </button>
+
+                            <!-- Modal -->
+                            <div class="modal fade" id="newOrder{{$customer->id}}" tabindex="-1" aria-labelledby="exampleModalLabel"
+                                 aria-hidden="true">
+                                <div class="modal-dialog modal-dialog-centered">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title" id="exampleModalLabel">Place Order</h5>
+                                            <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                    aria-label="Close"></button>
+                                        </div>
+                                        <div class="modal-body">
+                                            <form action="{{route('order.store', $customer->id)}}" method="post">
+                                                @csrf
+                                                <div class="mb-3">
+                                                    <label for="menu" class="form-label">Food</label>
+                                                    <select class="form-select" aria-label="menu" name="menu_id">
+                                                        @if($menus->count())
+                                                            @foreach($menus as $menu)
+                                                                <option value="{{$menu->id}}">{{$menu->name}}</option>
+                                                            @endforeach
+                                                        @endif
+                                                    </select>
+                                                </div>
+                                                <div class="mb-3">
+                                                    <label for="qty" class="form-label">Quantity</label>
+                                                    <input type="number" class="form-control" id="qty"
+                                                           name="quantity">
+                                                </div>
+                                                <button type="submit" class="btn btn-primary">Place Order</button>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- Button trigger modal -->
+                            <button type="button" class="btn btn-sm ms-2 btn-outline-success" data-bs-toggle="modal"
+                                    data-bs-target="#viewOrder{{$customer->id}}">
+                                View Order
+                            </button>
+
+                            <!-- Modal -->
+                            <div class="modal fade" id="viewOrder{{$customer->id}}" tabindex="-1" aria-labelledby="exampleModalLabel"
+                                 aria-hidden="true">
+                                <div class="modal-dialog modal-dialog-centered">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title" id="exampleModalLabel">Order of {{$customer->name}}</h5>
+                                            <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                    aria-label="Close"></button>
+                                        </div>
+                                        <div class="modal-body">
+                                            @if($customer->orders->count())
+                                                @foreach($customer->orders as $order)
+                                                    <div class="card">
+                                                        <div class="card-body">
+                                                            <h5 class="card-title">{{$order->menu->name}}</h5>
+                                                            <p class="card-text">Quantity: {{$order->quantity}}</p>
+                                                        </div>
+                                                    </div>
+                                                @endforeach
+                                            @else
+                                                <p>No order yet</p>
+                                            @endif
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-success" data-bs-dismiss="modal">
+                                                Close
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
                         </td>
                     </tr>
                 @endforeach

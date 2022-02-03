@@ -5,6 +5,7 @@ use App\Http\Controllers\auth\UserController;
 use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\dashboard\DashboardController;
 use App\Http\Controllers\MenuController;
+use App\Http\Controllers\OrderController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -52,3 +53,8 @@ Route::patch('/home/menu/{menu}', [MenuController::class, 'update'])->name('menu
 //customer
 Route::get('/home/customer', [CustomerController::class, 'index'])->name('customer');
 Route::post('/home/customer', [CustomerController::class, 'store'])->name('customer.store');
+
+//order
+Route::get('/home/order', [OrderController::class, 'index'])->name('order');
+Route::post('/home/order/{customer}', [OrderController::class, 'store'])->name('order.store');
+Route::get('/home/order/{customer}', [OrderController::class, 'getOrder'])->name('order.getOrder');
