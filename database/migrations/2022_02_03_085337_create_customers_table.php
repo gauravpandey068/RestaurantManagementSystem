@@ -17,6 +17,7 @@ class CreateCustomersTable extends Migration
             $table->id();
             $table->string('name');
             $table->integer('table_no');
+            $table->boolean('is_active')->default(true);
             $table->timestamps();
         });
     }
