@@ -3,6 +3,7 @@
 use App\Http\Controllers\auth\LoginController;
 use App\Http\Controllers\auth\UserController;
 use App\Http\Controllers\dashboard\DashboardController;
+use App\Http\Controllers\MenuController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -37,3 +38,12 @@ Route::delete('/home/users/{user}', [UserController::class, 'destroy'])->name('u
 Route::patch('/home/users/{user}', [UserController::class, 'update'])->name('users.update');
 //change user password
 Route::patch('/home/users/{user}/password', [UserController::class, 'changePassword'])->name('users.password');
+
+//menu
+Route::get('/home/menu', [MenuController::class, 'index'])->name('menu');
+//add menu
+Route::post('/home/menu', [MenuController::class, 'store'])->name('menu.store');
+//delete menu
+Route::delete('/home/menu/{menu}', [MenuController::class, 'destroy'])->name('menu.destroy');
+//update menu
+Route::patch('/home/menu/{menu}', [MenuController::class, 'update'])->name('menu.update');
