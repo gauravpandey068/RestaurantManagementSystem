@@ -58,3 +58,5 @@ Route::post('/home/customer', [CustomerController::class, 'store'])->name('custo
 Route::get('/home/order', [OrderController::class, 'index'])->name('order');
 Route::post('/home/order/{customer}', [OrderController::class, 'store'])->name('order.store');
 Route::get('/home/order/{customer}', [OrderController::class, 'getOrder'])->name('order.getOrder');
+//update order
+Route::patch('/home/order/{order}', [OrderController::class, 'update'])->name('order.update');

@@ -42,13 +42,13 @@
                                                     aria-label="Close"></button>
                                         </div>
                                         <div class="modal-body">
-                                            <form action="#" method="post">
+                                            <form action="{{route('order.update', $order->id)}}" method="post">
                                                 @csrf
                                                 @method('PATCH')
                                                 <div class="mb-3">
                                                     <label for="role">Status</label>
                                                     <select class="form-select" aria-label="Default select example"
-                                                            name="type">
+                                                            name="status">
                                                         <option value="pending">Pending</option>
                                                         <option value="in-progress">In-Progress</option>
                                                         <option value="complete">Complete</option>

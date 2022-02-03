@@ -42,5 +42,14 @@ class OrderController extends Controller
         ]);
         return redirect()->back();
     }
+    public function update(Order $order)
+    {
+        request()->validate([
+            'status' => 'required',
+        ]);
+        $order->status = request('status');
+        $order->save();
+        return redirect()->back();
+    }
 
 }

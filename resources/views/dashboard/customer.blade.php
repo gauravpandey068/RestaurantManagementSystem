@@ -129,6 +129,7 @@
                                                         <div class="card-body">
                                                             <h5 class="card-title">{{$order->menu->name}}</h5>
                                                             <p class="card-text">Quantity: {{$order->quantity}}</p>
+                                                            <p class="card-text">Status: {{$order->status}}</p>
                                                         </div>
                                                     </div>
                                                 @endforeach
