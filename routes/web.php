@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\auth\LoginController;
 use App\Http\Controllers\auth\UserController;
+use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\dashboard\DashboardController;
 use App\Http\Controllers\MenuController;
 use Illuminate\Support\Facades\Route;
@@ -47,3 +48,7 @@ Route::post('/home/menu', [MenuController::class, 'store'])->name('menu.store');
 Route::delete('/home/menu/{menu}', [MenuController::class, 'destroy'])->name('menu.destroy');
 //update menu
 Route::patch('/home/menu/{menu}', [MenuController::class, 'update'])->name('menu.update');
+
+//customer
+Route::get('/home/customer', [CustomerController::class, 'index'])->name('customer');
+Route::post('/home/customer', [CustomerController::class, 'store'])->name('customer.store');
