@@ -25,42 +25,52 @@
                         <td>{{$order->quantity}}</td>
                         <td>{{$order->customer->table_no}}</td>
                         <td>{{$order->status}}</td>
-                        <td class="d-flex">
-                            <button type="button" class="btn btn-outline-success me-2" data-bs-toggle="modal"
-                                    data-bs-target="#updateOrder{{$order->id}}">
-                                <i class="bi bi-pencil"></i>
-                            </button>
+                        @if(auth()->user()->role == 'chef')
+                            <td class="d-flex">
+                                <button type="button" class="btn btn-outline-success me-2" data-bs-toggle="modal"
+                                        data-bs-target="#updateOrder{{$order->id}}">
+                                    <i class="bi bi-pencil"></i>
+                                </button>
 
-                            <!-- Modal -->
-                            <div class="modal fade" id="updateOrder{{$order->id}}" tabindex="-1" role="dialog" aria-labelledby="editMenuDialog"
-                                 aria-hidden="true">
-                                <div class="modal-dialog modal-dialog-centered">
-                                    <div class="modal-content">
-                                        <div class="modal-header">
-                                            <h5 class="modal-title" id="exampleModalLabel">Update Order {{$order->menu->name}}</h5>
-                                            <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                                    aria-label="Close"></button>
-                                        </div>
-                                        <div class="modal-body">
-                                            <form action="{{route('order.update', $order->id)}}" method="post">
-                                                @csrf
-                                                @method('PATCH')
-                                                <div class="mb-3">
-                                                    <label for="role">Status</label>
-                                                    <select class="form-select" aria-label="Default select example"
-                                                            name="status">
-                                                        <option value="pending">Pending</option>
-                                                        <option value="in-progress">In-Progress</option>
-                                                        <option value="complete">Complete</option>
-                                                    </select>
-                                                </div>
-                                                <button type="submit" class="btn btn-primary">Update</button>
-                                            </form>
+                                <!-- Modal -->
+                                <div class="modal fade" id="updateOrder{{$order->id}}" tabindex="-1" role="dialog"
+                                     aria-labelledby="editMenuDialog"
+                                     aria-hidden="true">
+                                    <div class="modal-dialog modal-dialog-centered">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h5 class="modal-title" id="exampleModalLabel">Update
+                                                    Order {{$order->menu->name}}</h5>
+                                                <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                        aria-label="Close"></button>
+                                            </div>
+                                            <div class="modal-body">
+                                                <form action="{{route('order.update', $order->id)}}" method="post">
+                                                    @csrf
+                                                    @method('PATCH')
+                                                    <div class="mb-3">
+                                                        <label for="role">Status</label>
+                                                        <select class="form-select" aria-label="Default select example"
+                                                                name="status">
+                                                            <option value="pending">Pending</option>
+                                                            <option value="in-progress">In-Progress</option>
+                                                            <option value="complete">Complete</option>
+                                                        </select>
+                                                    </div>
+                                                    <button type="submit" class="btn btn-primary">Update</button>
+                                                </form>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
-                            </div>
-                        </td>
+                            </td>
+                        @else
+                            <td>
+                                <button type="button" class="btn btn-outline-success me-2" disabled>
+                                    <i class="bi bi-pencil"></i>
+                                </button>
+                            </td>
+                        @endif
                     </tr>
                 @endforeach
             @else

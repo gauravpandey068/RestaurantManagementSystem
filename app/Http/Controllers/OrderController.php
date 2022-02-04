@@ -12,7 +12,7 @@ class OrderController extends Controller
     public function __construct()
     {
         $this->middleware('auth');
-        $this->middleware('waiterRole')->except('update');
+        $this->middleware('waiterRole')->except('update', 'index');
         $this->middleware('chefRole')->only('update');
 
     }
@@ -35,14 +35,18 @@ class OrderController extends Controller
             'menu_id' => 'required',
             'quantity' => 'required',
         ]);
+        $price = Menu::find(request('menu_id'))->price * request('quantity');
+
 
         $customer->orders()->create([
             'menu_id' => request('menu_id'),
             'quantity' => request('quantity'),
+            'price' => $price,
             'status' => 'pending',
         ]);
         return redirect()->back();
     }
+
     public function update(Order $order)
     {
         request()->validate([
