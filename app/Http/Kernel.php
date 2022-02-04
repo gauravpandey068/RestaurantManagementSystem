@@ -3,6 +3,7 @@
 namespace App\Http;
 
 use App\Http\Middleware\AdminRole;
+use App\Http\Middleware\ChefRole;
 use App\Http\Middleware\Role;
 use App\Http\Middleware\WaiterRole;
 use Illuminate\Foundation\Http\Kernel as HttpKernel;
@@ -68,5 +69,6 @@ class Kernel extends HttpKernel
         'verified' => \Illuminate\Auth\Middleware\EnsureEmailIsVerified::class,
         'adminRole'=>AdminRole::class,
         'waiterRole'=>WaiterRole::class,
+        'chefRole'=>ChefRole::class,
     ];
 }

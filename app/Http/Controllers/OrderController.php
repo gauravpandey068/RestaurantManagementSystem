@@ -12,7 +12,8 @@ class OrderController extends Controller
     public function __construct()
     {
         $this->middleware('auth');
-        $this->middleware('waiterRole');
+        $this->middleware('waiterRole')->except('update');
+        $this->middleware('chefRole')->only('update');
 
     }
 
