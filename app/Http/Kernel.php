@@ -3,6 +3,7 @@
 namespace App\Http;
 
 use App\Http\Middleware\AdminRole;
+use App\Http\Middleware\CashierRole;
 use App\Http\Middleware\ChefRole;
 use App\Http\Middleware\Role;
 use App\Http\Middleware\WaiterRole;
@@ -70,5 +71,6 @@ class Kernel extends HttpKernel
         'adminRole'=>AdminRole::class,
         'waiterRole'=>WaiterRole::class,
         'chefRole'=>ChefRole::class,
+        'cashierRole'=>CashierRole::class,
     ];
 }
