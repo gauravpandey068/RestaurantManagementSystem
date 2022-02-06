@@ -12,15 +12,16 @@ class LoginController extends Controller
         $this->middleware('guest')->except('logout');
     }
 
-    public function login(){
+    public function login()
+    {
 
         //validate the form data
-        $this->validate(request(),[
+        $this->validate(request(), [
             'email' => 'required|email',
             'password' => 'required'
         ]);
         //Attempt to log the user in
-        if(!auth()->attempt(request(['email', 'password'], 'remember'))){
+        if (!auth()->attempt(request(['email', 'password']), request(['remember']))) {
             return back()->withErrors([
                 'message' => 'Please check your credentials and try again'
             ]);
@@ -30,7 +31,8 @@ class LoginController extends Controller
     }
 
     //logout
-    public function logout(){
+    public function logout()
+    {
         auth()->logout();
         return redirect('/');
     }
