@@ -25,7 +25,7 @@
                         <td>{{$order->quantity}}</td>
                         <td>{{$order->customer->table_no}}</td>
                         <td>{{$order->status}}</td>
-                        @if(auth()->user()->role == 'chef')
+                        @if(auth()->user()->role == 'chef' || auth()->user()->role == 'admin')
                             <td class="d-flex">
                                 <button type="button" class="btn btn-outline-success me-2" data-bs-toggle="modal"
                                         data-bs-target="#updateOrder{{$order->id}}">

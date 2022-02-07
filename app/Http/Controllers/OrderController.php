@@ -19,7 +19,7 @@ class OrderController extends Controller
 
     public function index()
     {
-        $orders = Order::all();
+        $orders = Order::all()->where('status', '!=', 'complete');
         return view('dashboard.order', compact('orders'));
     }
 

@@ -22,7 +22,7 @@ class ChefRole
         }
         $user = Auth::user();
 
-        if ($user->role == 'chef') {
+        if ($user->role == 'chef' || $user->role == 'admin') {
             return $next($request);
         } else {
             return redirect()->back();
