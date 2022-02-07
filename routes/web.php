@@ -6,6 +6,7 @@ use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\dashboard\DashboardController;
 use App\Http\Controllers\MenuController;
 use App\Http\Controllers\OrderController;
+use App\Http\Controllers\PaymentController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -60,3 +61,8 @@ Route::post('/home/order/{customer}', [OrderController::class, 'store'])->name('
 Route::get('/home/order/{customer}', [OrderController::class, 'getOrder'])->name('order.getOrder');
 //update order
 Route::patch('/home/order/{order}', [OrderController::class, 'update'])->name('order.update');
+
+//payment
+Route::get('/home/payment', [PaymentController::class, 'index'])->name('payment');
+Route::post('/home/payment', [PaymentController::class, 'create'])->name('payment.create');
+Route::patch('/home/payment/{payment}', [PaymentController::class, 'update'])->name('payment.update');

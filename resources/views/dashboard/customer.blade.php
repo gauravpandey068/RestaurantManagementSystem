@@ -64,7 +64,9 @@
                     <tr>
                         <th scope="row">{{$customer->id}}</th>
                         <td>{{$customer->name}}</td>
-                        <td>{{$customer->table_no}}</td>
+                        <td>
+                            <span class="badge bg-primary">{{$customer->table_no}}</span>
+                        </td>
                         <td>
                             <!-- Button trigger modal -->
                             <button type="button" class="btn btn-sm btn-outline-primary" data-bs-toggle="modal"
@@ -128,8 +130,15 @@
                                                     <div class="card">
                                                         <div class="card-body">
                                                             <h5 class="card-title">{{$order->menu->name}}</h5>
-                                                            <p class="card-text">Quantity: {{$order->quantity}}</p>
-                                                            <p class="card-text">Status: {{$order->status}}</p>
+                                                            <p class="card-text">
+                                                                <span class="badge bg-success">Quantity: {{$order->quantity}}</span>
+                                                            </p>
+                                                            <p class="card-text">
+                                                                <span class="badge bg-warning">Price: {{$order->price}}</span>
+                                                            </p>
+                                                            <p class="card-text">
+                                                                <span class="badge bg-info">Status: {{$order->status}}</span>
+                                                            </p>
                                                         </div>
                                                     </div>
                                                 @endforeach
