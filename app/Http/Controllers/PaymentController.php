@@ -43,7 +43,7 @@ class PaymentController extends Controller
         $payment->is_paid = true;
         $customer = Customer::find($payment->customer_id);
         $customer->is_active = false;
-        $customer->save();
+        $customer->delete();
         $payment->save();
         return redirect()->back();
     }
